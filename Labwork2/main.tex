@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\title{Labwork 2 Advanced Programming for HPC}
+\author{Ta Quang Hieu - M22ICT002}
+\date{October 2023}
+
+\begin{document}
+
+\maketitle
+
+\section{The problem}
+Labwork 2: Use numba.cuda to get to know your GPU
+\begin{enumerate}
+    \item Device name
+    \item Core info: multiprocessor count, core count
+    \item Memory info: memory size
+\end{enumerate}
+
+\section{Device name}
+In order to get the device name, I used \textbf{cuda.detect()} to detect GPU devices in my computer, which then return this result:
+\begin{verbatim}
+Found 1 CUDA devices
+id 0    b'GeForce GTX 1050 Ti'                              [SUPPORTED]
+                      Compute Capability: 6.1
+                           PCI Device ID: 0
+                              PCI Bus ID: 1
+                                    UUID: GPU-6d8e1ed7-4b24-5716-1782-904e5457d239
+                                Watchdog: Enabled
+                            Compute Mode: WDDM
+             FP32/FP64 Performance Ratio: 32
+Summary:
+    1/1 devices are supported
+\end{verbatim}
+
+The result shows that there is 1 supported device along with its name and id. Now, I can access this device through the id with \textbf{cuda.select\_device(0)}
+
+\section{Core info}
+To get the core information, I use getattr() method in this block of code:
+\begin{verbatim}
+attribs = [s for s in dir(device) if s.isupper()]
+for attr in attribs:
+    print(attr, '=', getattr(device, attr))
+\end{verbatim}
+Which returns this result, and we can see that the MULTIPROCESSOR\_COUNT is 6 along with other information:
+\begin{verbatim}
+COMPUTE_CAPABILITY_MAJOR = 6
+COMPUTE_CAPABILITY_MINOR = 1
+KERNEL_EXEC_TIMEOUT = 1
+MULTIPROCESSOR_COUNT = 6
+PCI_BUS_ID = 1
+PCI_DEVICE_ID = 0
+SINGLE_TO_DOUBLE_PRECISION_PERF_RATIO = 32
+TCC_DRIVER = 0
+\end{verbatim}
+
+\section{Memory info}
+To get the memory information, I used get\_memory\_info() and obtained the information like this:
+\begin{verbatim}
+MemoryInfo(free=3543112091, total=4294967296)
+\end{verbatim}
+
+
+\end{document}
