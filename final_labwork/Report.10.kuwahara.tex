@@ -481,13 +481,30 @@
 		\label{tab:running_3_method}
 	\end{tabular}
 	
-	Actually, the result is like below where the first 2 value are both the window size of 3 but somehow the second time take longer, but in general we can see that the running time is increase as the window size increase since we need to perform more computation as the window size increase:
+	Actually, the result is like below where the first 2 value are both the window size of 3 but somehow the second time take longer, but in general, we can see that the running time increases as the window size increase since we need to perform more computation as the window size increase:
 	\begin{verbatim}
+		1st run:
 		[0.0010039806365966797,
 		0.005692243576049805,
 		0.0011553764343261719,
 		0.0016481876373291016,
 		0.002286672592163086]
+		
+		2nd run:
+		[0.0009732246398925781,
+		0.0008499622344970703,
+		0.0011768341064453125,
+		0.0016565322875976562,
+		0.002336263656616211]
+		
+		3rd run:
+		[0.0014276504516601562,
+		0.0009043216705322266,
+		0.0011599063873291016,
+		0.0017046928405761719,
+		0.002307415008544922]
 	\end{verbatim}
+	
+	Also, I noticed that as the window size increases the image becomes more blur as you can observer the image in this repo.
 	
 \end{document}
